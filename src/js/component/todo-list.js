@@ -3,37 +3,37 @@ import { List } from "./list";
 import { Footer } from "./footer";
 
 export function TodoList() {
-    const [list, setList] = useState([]);
-    const [task, setTask] = useState("");
-    const [error, setError] = useState(false);
-    const url = "https://assets.breatheco.de/apis/fake/todos/user/PitiTheo";
+	const [list, setList] = useState([]);
+	const [task, setTask] = useState("");
+	const [error, setError] = useState(false);
+	const url = "https://assets.breatheco.de/apis/fake/todos/user/";
 
-    const getList = () => {
-        fetch(url, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(resp => resp.json())
-            .then(data => setList(data))
-            .catch(error => console.error(error));
-    };
+	const getList = () => {
+		fetch(url, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" }
+		})
+			.then(resp => resp.json())
+			.then(data => setList(data))
+			.catch(error => console.error(error));
+	};
 
-    const newList = () => {
-        let list = [];
-        fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(list)
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                getList();
-            })
-            .catch(error => console.error(error));
-    };
+	const newList = () => {
+		let list = [];
+		fetch(url, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(list)
+		})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				getList();
+			})
+			.catch(error => console.error(error));
+	};
 
-    	const updateList = () => {
+	const updateList = () => {
 		fetch(url, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
@@ -42,9 +42,9 @@ export function TodoList() {
 			.then(resp => resp.json())
 			.then(data => console.log(data))
 			.catch(error => console.error(error));
-    };
-    
-    	useEffect(() => {
+	};
+
+	useEffect(() => {
 		getList();
 	}, []);
 
@@ -58,9 +58,9 @@ export function TodoList() {
 		}
 
 		setTask(e.target.value);
-    };
-    
-    	//Delete the task
+	};
+
+	//Delete the task
 	const deleteTask = key => {
 		const newTasks = list.filter((task, index) => index !== key);
 		setList(newTasks);
@@ -79,30 +79,31 @@ export function TodoList() {
 				newList();
 			})
 			.catch(error => console.error(error));
-    };
-    
-    	const handleSubmit = e => {
+	};
+
+	const handleSubmit = e => {
 		e.preventDefault();
 
 		if (task === "") {
-			setError("Se necesita una tarea");
+			setError("Needs a task");
 		} else {
 			setList([...list, { label: task, done: false }]);
 		}
 		setTask("");
-    };
-    return (
+	};
+
+	return (
 		<div className="container">
-			<div className="w-50 mx-auto shadow bg-secondary bg-gradient">
-				<h6 className="w-50 mx-auto fw-light text-dark">
+			<div className="w-50 mx-auto shadow bg-secondary bg-dark">
+				<h6 className="w-50 mx-auto fw-dark text-dark">
 					{error ? error : null}
 				</h6>
 
 				<form onSubmit={handleSubmit}>
 					<input
-						className="col list-group-item w-100"
+						className="col list-group-item w-150"
 						type="text"
-						placeholder="Agregar tareas"
+						placeholder="Add task"
 						name="taskName"
 						value={task}
 						onChange={handleChange}
@@ -113,7 +114,7 @@ export function TodoList() {
 					<List list={list} deleteTask={deleteTask} />
 				</div>
 
-				<div className="footer m-3">
+				<div className="footer m-15">
 					<Footer list={list} />
 				</div>
 			</div>
@@ -122,9 +123,9 @@ export function TodoList() {
 				className="d-flex justify-content-center mt-3"
 				id="btn-container">
 				<button
-					className="btn btn-secondary"
+					className="btn btn-danger"
 					onClick={() => deleteTasks()}>
-					Eliminar todas las tareas
+					Erase all tasks
 				</button>
 			</div>
 		</div>

@@ -1,13 +1,17 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
-/* 
+html body {
+    background-color: rgb(242, 242, 243);
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+#delete {
+    box-shadow: none;
+    float: right;
+}
 
-*/
+#task {
+    margin-bottom: 1px;
+    margin-top: 5px;
+    float: center;
+    
+}

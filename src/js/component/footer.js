@@ -1,15 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export const Footer = () => {
+export function Footer({ list }) {
 	return (
-		<div
-			className="text-center p-3"
-			style={{ backgroundColor: "lightblue", color: "grey" }}>
-			<img
-				className="imageSize pb-5"
-				src="https://4geeksacademy.com/static/59abdc351548ee6640c495ffbb13967c/e22c9/4G_logo_negro.png"
-			/>
-			<h5> Hecho por Julio Vilaboa-4Geeks Academy </h5>
+		<div className="text-break text-light">
+			{list.length !== 0 ? `${list.length} Tasks to do` : "No tasks"}
 		</div>
 	);
+}
+
+Footer.propTypes = {
+	list: PropTypes.array,
+	deleteTask: PropTypes.func
 };
