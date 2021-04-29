@@ -6,7 +6,7 @@ export function TodoList() {
 	const [list, setList] = useState([]);
 	const [task, setTask] = useState("");
 	const [error, setError] = useState(false);
-	const url = "https://assets.breatheco.de/apis/fake/todos/user/";
+	const url = "https://assets.breatheco.de/apis/fake/todos/user/PitiTheo";
 
 	const getList = () => {
 		fetch(url, {
